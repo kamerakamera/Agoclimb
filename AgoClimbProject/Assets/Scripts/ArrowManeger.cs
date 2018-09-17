@@ -8,6 +8,8 @@ public class ArrowManeger : MonoBehaviour {
     float shotPower;
     [SerializeField]
     Transform ago;
+    [SerializeField]
+    GameObject arrowObject;
     // Use this for initialization
     void Start () {
         shotPower = 6;
@@ -19,11 +21,16 @@ public class ArrowManeger : MonoBehaviour {
 	}
 
     void FixedUpdate() {
-        AgoTracking();
+        
     }
 
-    void AgoTracking() {
+    public void AgoTracking() {
         transform.position = ago.position;
+    }
+
+    public void ArrowDisplayChenge(bool _bool) {
+        Debug.Log("aa");
+        arrowObject.SetActive(_bool);
     }
 
     void LookDirection() {

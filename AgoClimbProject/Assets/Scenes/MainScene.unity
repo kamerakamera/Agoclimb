@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ago: {fileID: 280954188}
+  arrowObject: {fileID: 1503628877}
 --- !u!212 &1503628879
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -803,6 +804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ago: {fileID: 280954186}
+  arrowManeger: {fileID: 1503628878}
 --- !u!4 &1977855682
 Transform:
   m_ObjectHideFlags: 0
