@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 280954189}
   arrowManeger: {fileID: 1503628878}
+  gameStateManeger: {fileID: 1977855681}
 --- !u!4 &280954188
 Transform:
   m_ObjectHideFlags: 0
@@ -381,6 +382,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -395,6 +397,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5602d7b464b2d44ac528cf872be75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ago: {fileID: 280954185}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -788,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ee5607b0101d848b899611ae66d045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ago: {fileID: 280954186}
 --- !u!4 &1977855682
 Transform:
   m_ObjectHideFlags: 0

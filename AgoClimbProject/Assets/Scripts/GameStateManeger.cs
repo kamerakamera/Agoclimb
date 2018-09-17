@@ -6,7 +6,7 @@ public enum State {
     wait, shot
 }
 
-public class StateManeger : MonoBehaviour {
+public class GameStateManeger : MonoBehaviour {
     public State GameState { get; set; }
     [SerializeField]
     Ago ago;
@@ -17,18 +17,24 @@ public class StateManeger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        StateManege();
 	}
 
-
-
-    void StateChange() {
+    void StateManege() {
         if(GameState == (State)0) {
-            GameState += 1;
+            if (Input.GetMouseButtonDown(0)) {
+                ago.Fire();
+                StateChange(1);
+            }
         }
-        else if(GameState == (State)1) {
-            GameState = 0;
+        if (GameState == (State)1) {
+            
         }
+    }
+
+    public void StateChange(int num) {
+        GameState = (State)num;
+        
     }
 
 }

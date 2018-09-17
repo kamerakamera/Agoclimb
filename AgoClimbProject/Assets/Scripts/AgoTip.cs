@@ -5,8 +5,8 @@ using UnityEngine;
 public class AgoTip : MonoBehaviour {
     [SerializeField]
     Ago ago;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -19,7 +19,6 @@ public class AgoTip : MonoBehaviour {
         if (col.collider.tag == "Wall") {
             ago.StuckChin(col.gameObject);
             Debug.Log("stuck");
-            
         }
     }
 }

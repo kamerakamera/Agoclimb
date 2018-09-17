@@ -7,6 +7,8 @@ public class Ago : MonoBehaviour {
     private Rigidbody2D rb;
     [SerializeField]
     private ArrowManeger arrowManeger;
+    [SerializeField]
+    GameStateManeger gameStateManeger;
     private float fireRotationZ;
 	// Use this for initialization
 	void Start () {
@@ -15,22 +17,17 @@ public class Ago : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButtonDown(0)) {
-            Fire();
-        }
+        
 	}
 
-    void Fire() {
+    public void Fire() {
         transform.rotation = Quaternion.Euler(arrowManeger.GetFireRotation().eulerAngles + new Vector3(0, 0, 180));
         rb.velocity = transform.up * -1 * arrowManeger.GetFirePower();
     }
 
-    public void Stop() {
-        //rb.velocity = Vector3.zero;
-    }
-
     public void StuckChin(GameObject stuckObject) {
         rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
+        gameStateManeger.StateChange(0);
     }
 
 }
