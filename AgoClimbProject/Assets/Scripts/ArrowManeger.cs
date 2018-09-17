@@ -10,7 +10,7 @@ public class ArrowManeger : MonoBehaviour {
     Transform ago;
     // Use this for initialization
     void Start () {
-        shotPower = 1;
+        shotPower = 6;
 	}
 	
 	// Update is called once per frame

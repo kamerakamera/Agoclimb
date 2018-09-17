@@ -18,8 +18,7 @@ public class Wall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //MoveWall(moveObject[0], moveObjectRb[0], 6, 8, "left");
-        //MoveWall(moveObject[1], moveObjectRb[1], -8, -6, "right");
+        
     }
 
     private void FixedUpdate() {

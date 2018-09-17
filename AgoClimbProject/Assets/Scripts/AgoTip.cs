@@ -15,9 +15,11 @@ public class AgoTip : MonoBehaviour {
 		
 	}
 
-    private void OnCollisionEnter(Collision collision) {
-        if(collision.collider.tag == "Wall") {
-            ago.Stop();
+    private void OnCollisionStay2D(Collision2D col) {
+        if (col.collider.tag == "Wall") {
+            ago.StuckChin(col.gameObject);
+            Debug.Log("stuck");
+            
         }
     }
 }

@@ -21,17 +21,16 @@ public class Ago : MonoBehaviour {
 	}
 
     void Fire() {
-        Debug.Log(arrowManeger.GetFireRotation().eulerAngles + new Vector3(0,0,180));
         transform.rotation = Quaternion.Euler(arrowManeger.GetFireRotation().eulerAngles + new Vector3(0, 0, 180));
         rb.velocity = transform.up * -1 * arrowManeger.GetFirePower();
-        //transform.rotation = 
-
-        //rb.velocity = arrowManeger.GetShotPower()  * arrowManeger.GetArrowRotation().eulerAngles;
-        //rb.velocity = Vector2.up * 6.65f;
     }
 
     public void Stop() {
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
+    }
+
+    public void StuckChin(GameObject stuckObject) {
+        rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
     }
 
 }
