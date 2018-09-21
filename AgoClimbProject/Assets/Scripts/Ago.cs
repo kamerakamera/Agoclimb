@@ -10,9 +10,10 @@ public class Ago : MonoBehaviour {
     [SerializeField]
     GameStateManeger gameStateManeger;
     private float fireRotationZ;
+    Vector3 startPos;
 	// Use this for initialization
 	void Start () {
-		
+        startPos = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -27,6 +28,19 @@ public class Ago : MonoBehaviour {
 
     public void StuckChin(GameObject stuckObject) {
         rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
-        gameStateManeger.StateChange(0);
+    }
+
+    public void DeadSpin() {
+        transform.Rotate(new Vector3(0, 0, 20));
+        transform.localScale -= new Vector3(0.005f, 0.005f, 0.005f);
+        if (transform.localScale.z < 0.01f) {
+            gameStateManeger.StateChange(4);
+        }
+    }
+
+    public void RetryAgo() {
+        gameObject.SetActive(true);
+        transform.position = startPos;
+        gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
     }
 }

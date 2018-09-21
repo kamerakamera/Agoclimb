@@ -9,7 +9,7 @@ public class Wall : MonoBehaviour {
     [SerializeField]
     Rigidbody2D[] moveObjectRb;
     [SerializeField]
-    bool[] isRight, isLeft;
+    bool[] isRight = new bool[2], isLeft = new bool[2];
 
     // Use this for initialization
     void Start() {

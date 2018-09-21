@@ -37,13 +37,22 @@ public class StageCreateManeger : MonoBehaviour {
             if(i < 2) {
                 wallObject[i] = wallObject[i + 1];
             } else {
-                wallObject[2] = Instantiate(wallPrefab, new Vector3(wallObject[1].transform.position.x, nextWallPosY, 0), Quaternion.identity);
+                wallObject[2] = Instantiate(wallPrefab, new Vector3(0, nextWallPosY, 0), Quaternion.identity);
             }
         }
     }
 
     void DeleteWall() {
         Destroy(wallObject[0]);
+    }
+
+    public void RetryCreateWall() {
+        nextWallPosY = 0;
+        for(int i = 0;i < 3; i++) {
+            Destroy(wallObject[i]);
+            wallObject[i] = Instantiate(wallPrefab, new Vector3(0, nextWallPosY, 0),Quaternion.identity);
+            UpdateNextWallPos();
+        }
     }
 
 }
