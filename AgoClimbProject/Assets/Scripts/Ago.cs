@@ -29,5 +29,4 @@ public class Ago : MonoBehaviour {
         rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
         gameStateManeger.StateChange(0);
     }
-
 }

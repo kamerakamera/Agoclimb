@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum State {
-    wait, shot
+    wait, shot,gameover,deadtime
 }
 
 public class GameStateManeger : MonoBehaviour {
@@ -26,6 +26,12 @@ public class GameStateManeger : MonoBehaviour {
         arrowManeger.AgoTracking();
     }
 
+    private IEnumerator Dead() {
+
+        yield return new WaitForSeconds(1.5f);
+        yield break;
+    }
+
     void StateManege() {
         if(GameState == (State)0) {
             arrowManeger.ArrowDisplayChenge(true);
@@ -36,6 +42,25 @@ public class GameStateManeger : MonoBehaviour {
             }
         }
         if (GameState == (State)1) {
+            
+        }
+        if (GameState == (State)2) {
+            StartCoroutine("Dead");
+            StateChange(3);
+        }
+        if(GameState == (State)3) {
+            //回った
+            GameObject deadAgo = ago.gameObject;
+            deadAgo.transform.Rotate(new Vector3(0, 0, 20));
+            deadAgo.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
+            if(deadAgo.transform.localScale.z < 0.1f) {
+                deadAgo.SetActive(false);
+                //Destroy(deadAgo);
+                StateChange(4);
+            }
+        }
+        if (GameState == (State)4) {
+            //回転処理
             
         }
     }

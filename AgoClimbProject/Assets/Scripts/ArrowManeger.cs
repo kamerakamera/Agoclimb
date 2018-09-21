@@ -29,7 +29,6 @@ public class ArrowManeger : MonoBehaviour {
     }
 
     public void ArrowDisplayChenge(bool _bool) {
-        Debug.Log("aa");
         arrowObject.SetActive(_bool);
     }
 
