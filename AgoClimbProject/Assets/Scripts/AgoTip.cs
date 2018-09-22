@@ -19,7 +19,7 @@ public class AgoTip : MonoBehaviour {
 	}
 
     private void OnCollisionEnter2D(Collision2D col) {
-        if (col.collider.tag == "Wall" || gameStateManeger.GameState == (State)1) {
+        if (col.collider.tag == "Wall" && gameStateManeger.GameState < (State)3) {
             ago.StuckChin(col.gameObject);
             gameStateManeger.StateChange(1);
             WallObject = col.gameObject;

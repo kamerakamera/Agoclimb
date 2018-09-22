@@ -7,10 +7,10 @@ public class StageLimitObject : MonoBehaviour {
     Transform agoTransform;
     [SerializeField]
     float movePower,maxdistance;
-    Vector3 startposition = new Vector3(0,-15,0);
+    Vector3 startposition;
 	// Use this for initialization
 	void Start () {
-		
+        startposition = transform.position;
 	}
 	
 	// Update is called once per frame
