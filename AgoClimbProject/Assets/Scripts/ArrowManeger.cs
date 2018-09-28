@@ -5,14 +5,17 @@ using UnityEngine;
 public class ArrowManeger : MonoBehaviour {
     Vector3 agoPos;
     Quaternion shotRotation;
-    float shotPower;
+    float shotPower,powerChengeAmount = 10,maxPower = 10,minPower = 1; 
     [SerializeField]
     Transform ago;
     [SerializeField]
     GameObject arrowObject;
+    bool isDownPower, isUpPower;
     // Use this for initialization
     void Start () {
-        shotPower = 6;
+        shotPower = 1;
+        SetArrowSize();
+        isUpPower = true;
 	}
 	
 	// Update is called once per frame
@@ -21,7 +24,8 @@ public class ArrowManeger : MonoBehaviour {
 	}
 
     void FixedUpdate() {
-        
+        SetArrowSize();
+        SetPower();
     }
 
     public void AgoTracking() {
@@ -39,12 +43,27 @@ public class ArrowManeger : MonoBehaviour {
     }
 
     void SetArrowSize() {
-
+        arrowObject.transform.localScale = new Vector3(1, shotPower, 1);
     }
 
-    float SetPower() {
+    void SetPower() {
+
+        if(isUpPower == true) {
+            shotPower += powerChengeAmount * Time.fixedDeltaTime;
+            if(shotPower >= maxPower) {
+                isUpPower = false;
+                isDownPower = true; 
+            }
+        }
+
+        if(isDownPower == true) {
+            shotPower -= powerChengeAmount * Time.fixedDeltaTime;
+            if (shotPower <= minPower) {
+                isUpPower = true;
+                isDownPower = false;
+            }
+        }
         //powerを返す
-        return 8;
     }
 
     public Quaternion GetFireRotation() {

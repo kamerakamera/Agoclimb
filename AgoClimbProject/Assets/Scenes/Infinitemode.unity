@@ -415,9 +415,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 375722935}
-  - component: {fileID: 375722936}
   - component: {fileID: 375722937}
   - component: {fileID: 375722938}
+  - component: {fileID: 375722939}
+  - component: {fileID: 375722936}
   m_Layer: 0
   m_Name: AgoTip
   m_TagString: Player
@@ -438,8 +439,8 @@ Transform:
   m_Father: {fileID: 280954188}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &375722936
-CircleCollider2D:
+--- !u!61 &375722936
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -450,9 +451,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: -3}
+  m_Offset: {x: 0.05, y: -2.44}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Size: {x: 1.5, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &375722937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +492,31 @@ CapsuleCollider2D:
   m_Offset: {x: 0.05, y: -2.58}
   m_Size: {x: 1.11, y: 2}
   m_Direction: 0
+--- !u!61 &375722939
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375722934}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05, y: -1.75}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.42, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &393182151
 GameObject:
   m_ObjectHideFlags: 0
