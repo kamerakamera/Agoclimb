@@ -45,6 +45,7 @@ public class GameStateManeger : MonoBehaviour {
 
         if(GameState == (State)1) {
             ago.StuckChin(agoTip.WallObject);
+            ago.SetZeroFallVelocity();
             arrowManeger.ArrowDisplayChenge(true);
             if (Input.GetMouseButtonDown(0)) {
                 StateChange(2);
@@ -54,7 +55,7 @@ public class GameStateManeger : MonoBehaviour {
 
         if (GameState == (State)2) {
             ago.Fire();
-            StateChange(2);
+            ago.AddFallVelocity();
         }
 
         if (GameState == (State)3) {

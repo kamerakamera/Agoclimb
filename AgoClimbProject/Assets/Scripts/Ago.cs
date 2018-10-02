@@ -11,6 +11,8 @@ public class Ago : MonoBehaviour {
     GameStateManeger gameStateManeger;
     private float fireRotationZ;
     Vector3 startPos;
+    public Vector3 FallVelocity { get; set; }
+
 	// Use this for initialization
 	void Start () {
         startPos = transform.position;
@@ -23,7 +25,16 @@ public class Ago : MonoBehaviour {
 
     public void Fire() {
         transform.rotation = Quaternion.Euler(arrowManeger.GetFireRotation().eulerAngles + new Vector3(0, 0, 180));
-        rb.velocity = transform.up * -1 * arrowManeger.GetFirePower();
+        rb.velocity = transform.up * -1 * arrowManeger.GetFirePower() + FallVelocity;
+
+    }
+
+    public void AddFallVelocity() {
+        FallVelocity += new Vector3(0, -1, 0) * Time.deltaTime;
+    }
+
+    public void SetZeroFallVelocity() {
+        FallVelocity = Vector3.zero;
     }
 
     public void StuckChin(GameObject stuckObject) {
@@ -42,5 +53,6 @@ public class Ago : MonoBehaviour {
         gameObject.SetActive(true);
         transform.position = startPos;
         gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        SetZeroFallVelocity();
     }
 }

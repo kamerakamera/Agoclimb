@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowManeger : MonoBehaviour {
     Vector3 agoPos;
     Quaternion shotRotation;
-    float shotPower,powerChengeAmount = 10,maxPower = 10,minPower = 1; 
+    float shotPower,powerChengeAmount = 10,maxPower = 7,minPower = 3; 
     [SerializeField]
     Transform ago;
     [SerializeField]
