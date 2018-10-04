@@ -30,7 +30,7 @@ public class Ago : MonoBehaviour {
     }
 
     public void AddFallVelocity() {
-        FallVelocity += new Vector3(0, -1, 0) * Time.deltaTime;
+        FallVelocity += new Vector3(0, -1.5f, 0) * Time.deltaTime;
     }
 
     public void SetZeroFallVelocity() {

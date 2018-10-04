@@ -1246,11 +1246,11 @@ Prefab:
     - target: {fileID: 58554868391979144, guid: e93975a8995b938428ca0b51cd6b2c7e,
         type: 2}
       propertyPath: m_Radius
-      value: 4
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 1405026693478878, guid: e93975a8995b938428ca0b51cd6b2c7e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93975a8995b938428ca0b51cd6b2c7e, type: 2}
