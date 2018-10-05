@@ -25,4 +25,6 @@ public class AgoTip : MonoBehaviour {
             WallObject = col.gameObject;
         }
     }
+
+    
 }
