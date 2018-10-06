@@ -8,17 +8,26 @@ public class StageCreateManeger : MonoBehaviour {
     [SerializeField]
     GameObject[] wallObject = new GameObject[3];
     [SerializeField]
-    GameObject wallPrefab;
+    GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab;
+    [SerializeField]
+    ScoreManeger scoreManeger;
     float nextWallPosY,playerStartPosY,wallsize = 10;
+    int marshmallowAmount;
+    Vector3[] createMarshmallowPos;
     // Use this for initialization
     void Start () {
         nextWallPosY = wallsize * wallObject.Length;
-	}
+        marshmallowAmount = 7;
+        createMarshmallowPos = new Vector3[marshmallowAmount];
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		if(ago.transform.position.y >= nextWallPosY - wallsize * 2) {
             CreateWall();
+            CreateMarshmallow();
+            CreateEmptySpace();
         }
 	}
 
@@ -44,6 +53,23 @@ public class StageCreateManeger : MonoBehaviour {
 
     void DeleteWall() {
         Destroy(wallObject[0]);
+    }
+
+    void CreateMarshmallow() {
+        SetMarshmallowPos();
+        for(int i = 0;i < marshmallowAmount; i++) {
+            Instantiate(marshmallowPrefab, createMarshmallowPos[i], Quaternion.identity);
+        }
+    }
+
+    void SetMarshmallowPos() {
+        for(int i = 0;i < marshmallowAmount; i++) {
+            createMarshmallowPos[i] = new Vector3(Random.Range(-4,4), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1,wallsize / 2), 0);
+        }
+    }
+
+    void CreateEmptySpace() {
+        Instantiate(emptySpacePrefab, new Vector3(Random.Range(-4, 4), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1, wallsize / 2), 0), Quaternion.identity);
     }
 
     public void RetryCreateWall() {

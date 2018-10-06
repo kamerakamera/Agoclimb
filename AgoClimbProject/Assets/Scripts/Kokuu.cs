@@ -7,7 +7,7 @@ public class Kokuu : MonoBehaviour {
     GameStateManeger gameStateManeger;
 	// Use this for initialization
 	void Start () {
-		
+        gameStateManeger = GameObject.Find("GameStateManeger").GetComponent<GameStateManeger>();
 	}
 	
 	// Update is called once per frame

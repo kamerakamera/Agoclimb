@@ -20,6 +20,8 @@ public class GameStateManeger : MonoBehaviour {
     StageCreateManeger stageCreateManeger;
     [SerializeField]
     StageLimitObject stageLimitObject;
+    [SerializeField]
+    ScoreManeger scoreManeger;
 	// Use this for initialization
 	void Start () {
         GameState = (State)0;
@@ -84,6 +86,7 @@ public class GameStateManeger : MonoBehaviour {
 
     void Retry() {
         stageLimitObject.RetrySetPosition();
+        scoreManeger.ResetScore();
         ago.RetryAgo();
         stageCreateManeger.RetryCreateWall();
         deadPanelManeger.DisplayDeadPanel(false);

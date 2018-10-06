@@ -701,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71d3bec65951f843834220671e18d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 280954185}
 --- !u!4 &487172895
 Transform:
   m_ObjectHideFlags: 0
@@ -1315,6 +1316,11 @@ MonoBehaviour:
   - {fileID: 773971088}
   - {fileID: 40311136}
   wallPrefab: {fileID: 1305153316888516, guid: 139f582ca5958424d81b500608c3a29a, type: 2}
+  marshmallowPrefab: {fileID: 1596296290425242, guid: 79c0f625a43a9654eafaad787dc9b221,
+    type: 2}
+  emptySpacePrefab: {fileID: 1414875398110064, guid: 18ebbe752bdb6db4e8cda7df545fa2c2,
+    type: 2}
+  scoreManeger: {fileID: 487172894}
 --- !u!1 &1397649248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1305153316888516, guid: 139f582ca5958424d81b500608c3a29a,
@@ -1928,6 +1934,7 @@ MonoBehaviour:
   deadPanelManeger: {fileID: 1460461432}
   stageCreateManeger: {fileID: 1384910884}
   stageLimitObject: {fileID: 334826895}
+  scoreManeger: {fileID: 487172894}
 --- !u!4 &1977855682
 Transform:
   m_ObjectHideFlags: 0
