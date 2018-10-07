@@ -25,12 +25,17 @@ public class Ago : MonoBehaviour {
 
     public void Fire() {
         transform.rotation = Quaternion.Euler(arrowManeger.GetFireRotation().eulerAngles + new Vector3(0, 0, 180));
-        rb.velocity = transform.up * -1 * arrowManeger.GetFirePower() + FallVelocity;
-
+        rb.velocity = transform.up * -1 * arrowManeger.GetFirePower();
     }
 
     public void AddFallVelocity() {
-        FallVelocity += new Vector3(0, -1.5f, 0) * Time.deltaTime;
+        FallVelocity += new Vector3(0, -3.0f, 0) * Time.deltaTime;
+        rb.velocity += (Vector2)FallVelocity * Time.deltaTime;
+    }
+
+    public void ChengeRotation() {
+        transform.rotation = Quaternion.Euler(new Vector3(0,0,360 * Mathf.Abs(Mathf.Atan(rb.velocity.y/rb.velocity.x))));
+        Debug.Log(Mathf.Atan(rb.velocity.y / rb.velocity.x));
     }
 
     public void SetZeroFallVelocity() {

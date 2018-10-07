@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum State {
-    wait,stuck, fire,gameover,dead,spintime,retrymemu
+    wait,stuck, fire,spintime, gameover, retrymemu,moving
 }
 
 public class GameStateManeger : MonoBehaviour {
@@ -37,7 +37,7 @@ public class GameStateManeger : MonoBehaviour {
     }
 
     void StateManege() {
-        if(GameState == (State)0) {
+        if(GameState == State.wait) {
             arrowManeger.ArrowDisplayChenge(true);
             if (Input.GetMouseButtonDown(0)) {
                 StateChange(2);
@@ -45,7 +45,7 @@ public class GameStateManeger : MonoBehaviour {
             }
         }
 
-        if(GameState == (State)1) {
+        if(GameState == State.stuck) {
             ago.StuckChin(agoTip.WallObject);
             ago.SetZeroFallVelocity();
             arrowManeger.ArrowDisplayChenge(true);
@@ -55,28 +55,33 @@ public class GameStateManeger : MonoBehaviour {
             }
         }
 
-        if (GameState == (State)2) {
+        if (GameState == State.fire) {
             ago.Fire();
-            ago.AddFallVelocity();
+            StateChange((int)State.moving);
         }
 
-        if (GameState == (State)3) {
+        if (GameState == State.spintime) {
             //回った後にchenge
             ago.DeadSpin();
         }
 
-        if (GameState == (State)4) {
+        if (GameState == State.gameover) {
             arrowManeger.ArrowDisplayChenge(false);
             deadPanelManeger.DisplayDeadPanel(true);
             ago.gameObject.SetActive(false);
             StateChange(5);
         }
 
-        if (GameState == (State)5) {
+        if (GameState == State.retrymemu) {
             if (Input.GetKeyDown("r")) {
                 Retry();
                 StateChange(0);
             }
+        }
+
+        if(GameState == State.moving) {
+            ago.AddFallVelocity();
+            ago.ChengeRotation();
         }
     }
 
@@ -88,7 +93,7 @@ public class GameStateManeger : MonoBehaviour {
         stageLimitObject.RetrySetPosition();
         scoreManeger.ResetScore();
         ago.RetryAgo();
-        stageCreateManeger.RetryCreateWall();
+        stageCreateManeger.RetryCreateStage();
         deadPanelManeger.DisplayDeadPanel(false);
     }
 

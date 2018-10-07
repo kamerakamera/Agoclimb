@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowManeger : MonoBehaviour {
     Vector3 agoPos;
     Quaternion shotRotation;
-    float shotPower,powerChengeAmount = 10,maxPower = 7,minPower = 3; 
+    float shotPower,powerChengeAmount = 10,maxPower = 9,minPower = 4; 
     [SerializeField]
     Transform ago;
     [SerializeField]
@@ -43,7 +43,7 @@ public class ArrowManeger : MonoBehaviour {
     }
 
     void SetArrowSize() {
-        arrowObject.transform.localScale = new Vector3(1, shotPower, 1);
+        arrowObject.transform.localScale = new Vector3(1, shotPower - minPower + 1, 1);
     }
 
     void SetPower() {

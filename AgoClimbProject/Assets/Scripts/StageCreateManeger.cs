@@ -7,6 +7,7 @@ public class StageCreateManeger : MonoBehaviour {
     GameObject ago;
     [SerializeField]
     GameObject[] wallObject = new GameObject[3];
+    GameObject[] marshmallowObj, emptySpaceObj;
     [SerializeField]
     GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab;
     [SerializeField]
@@ -16,7 +17,7 @@ public class StageCreateManeger : MonoBehaviour {
     Vector3[] createMarshmallowPos;
     // Use this for initialization
     void Start () {
-        nextWallPosY = wallsize * wallObject.Length;
+        //nextWallPosY = wallsize * wallObject.Length;
         marshmallowAmount = 7;
         createMarshmallowPos = new Vector3[marshmallowAmount];
 
@@ -30,6 +31,14 @@ public class StageCreateManeger : MonoBehaviour {
             CreateEmptySpace();
         }
 	}
+
+    void StartCreate() {
+        for(int i = 0;i < 3; i++) {
+            wallObject[i] = Instantiate(wallPrefab, new Vector3(0, nextWallPosY, 0), Quaternion.identity);
+            CreateMarshmallow();
+            CreateEmptySpace();
+        }
+    }
 
     void CreateWall() {
         DeleteWall();
@@ -72,13 +81,20 @@ public class StageCreateManeger : MonoBehaviour {
         Instantiate(emptySpacePrefab, new Vector3(Random.Range(-4, 4), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1, wallsize / 2), 0), Quaternion.identity);
     }
 
-    public void RetryCreateWall() {
+    public void RetryCreateStage() {
         nextWallPosY = 0;
-        for(int i = 0;i < 3; i++) {
+        marshmallowObj = GameObject.FindGameObjectsWithTag("Marshmallow");
+        emptySpaceObj = GameObject.FindGameObjectsWithTag("EmptySpace");
+        for (int i = 0;i < 3; i++) {
             Destroy(wallObject[i]);
-            wallObject[i] = Instantiate(wallPrefab, new Vector3(0, nextWallPosY, 0),Quaternion.identity);
-            UpdateNextWallPos();
         }
+        foreach(GameObject obj in marshmallowObj) {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in emptySpaceObj) {
+            Destroy(obj);
+        }
+
     }
 
 }
