@@ -12,15 +12,19 @@ public class StageCreateManeger : MonoBehaviour {
     GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab;
     [SerializeField]
     ScoreManeger scoreManeger;
-    float nextWallPosY,playerStartPosY,wallsize = 10;
-    int marshmallowAmount;
-    Vector3[] createMarshmallowPos;
+    float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f;
+    List<Vector3> alreadyCreatePos = new List<Vector3>();
+    int marshmallowAmount,emptySpaceAmount;
+    bool setPos;
+    Vector3[] createMarshmallowPos,createEmptySpacePos;
     // Use this for initialization
     void Start () {
         //nextWallPosY = wallsize * wallObject.Length;
-        marshmallowAmount = 7;
+        marshmallowAmount = 4;
+        emptySpaceAmount = 1;
         createMarshmallowPos = new Vector3[marshmallowAmount];
-
+        createEmptySpacePos = new Vector3[emptySpaceAmount];
+        alreadyCreatePos.Add(ago.transform.position);
     }
 	
 	// Update is called once per frame
@@ -29,16 +33,17 @@ public class StageCreateManeger : MonoBehaviour {
             CreateWall();
             CreateMarshmallow();
             CreateEmptySpace();
+            DeleteAlreadyCreatePosList();
         }
 	}
 
-    void StartCreate() {
+    /*void StartCreate() {
         for(int i = 0;i < 3; i++) {
             wallObject[i] = Instantiate(wallPrefab, new Vector3(0, nextWallPosY, 0), Quaternion.identity);
             CreateMarshmallow();
             CreateEmptySpace();
         }
-    }
+    }*/
 
     void CreateWall() {
         DeleteWall();
@@ -73,15 +78,58 @@ public class StageCreateManeger : MonoBehaviour {
 
     void SetMarshmallowPos() {
         for(int i = 0;i < marshmallowAmount; i++) {
-            createMarshmallowPos[i] = new Vector3(Random.Range(-4,4), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1,wallsize / 2), 0);
+            do {
+                createMarshmallowPos[i] = new Vector3(Random.Range(-1 * wallInterval, wallInterval), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1, wallsize / 2), 0);
+                setPos = false;
+                foreach (Vector3 alreadyPos in alreadyCreatePos) {
+                    if (alreadyPos != null) {
+                        if ((alreadyPos.x - createInterval / 2 < createMarshmallowPos[i].x && alreadyPos.y - createInterval / 2 < createMarshmallowPos[i].y) && (alreadyPos.y + createInterval / 2 > createMarshmallowPos[i].y && alreadyPos.y + createInterval / 2 > createMarshmallowPos[i].y)) {
+                            setPos = true;
+                            break;
+                        }
+                    }
+                }
+                if (!setPos) {
+                    alreadyCreatePos.Add(createMarshmallowPos[i]);
+                }
+            }
+            while (setPos);
         }
     }
 
     void CreateEmptySpace() {
-        Instantiate(emptySpacePrefab, new Vector3(Random.Range(-4, 4), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1, wallsize / 2), 0), Quaternion.identity);
+        SetEmptySpacePos();
+        for (int i = 0; i < emptySpaceAmount; i++) {
+            Instantiate(emptySpacePrefab, createEmptySpacePos[i], Quaternion.identity);
+        }
     }
 
-    public void RetryCreateStage() {
+    void SetEmptySpacePos() {
+        for (int i = 0; i < emptySpaceAmount; i++) {
+            do {
+                createEmptySpacePos[i] = new Vector3(Random.Range(-1 * wallInterval, wallInterval), nextWallPosY - wallsize + Random.Range(wallsize / 2 * -1, wallsize / 2), 0);
+                setPos = false;
+                foreach (Vector3 alreadyPos in alreadyCreatePos) {
+                    if (alreadyPos != null) {
+                        if ((alreadyPos.x - createInterval / 2 < createEmptySpacePos[i].x && alreadyPos.y - createInterval / 2 < createEmptySpacePos[i].y) && (alreadyPos.y + createInterval / 2 > createEmptySpacePos[i].y && alreadyPos.y + createInterval / 2 > createEmptySpacePos[i].y)) {
+                            setPos = true;
+                            break;
+                        }
+                    }
+                }
+                if (!setPos) {
+                    alreadyCreatePos.Add(createEmptySpacePos[i]);
+                }
+            }
+            while (setPos);
+        }
+    }
+
+    void DeleteAlreadyCreatePosList() {
+        alreadyCreatePos = new List<Vector3>();
+    }
+
+    public void RetryDeleteObj() {
         nextWallPosY = 0;
         marshmallowObj = GameObject.FindGameObjectsWithTag("Marshmallow");
         emptySpaceObj = GameObject.FindGameObjectsWithTag("EmptySpace");
@@ -94,7 +142,7 @@ public class StageCreateManeger : MonoBehaviour {
         foreach (GameObject obj in emptySpaceObj) {
             Destroy(obj);
         }
-
+        alreadyCreatePos.Add(ago.transform.position);
     }
 
 }

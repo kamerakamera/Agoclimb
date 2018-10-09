@@ -36,22 +36,17 @@ public class Ago : MonoBehaviour {
     public void ChengeRotation() {
         if(rb.velocity.y > 0) {
             if(rb.velocity.x > 0) {
-                Debug.Log("右上");
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90 + Mathf.Abs(Mathf.Atan2(rb.velocity.y , rb.velocity.x) * Mathf.Rad2Deg)));
             }
             if (rb.velocity.x < 0) {
-                Debug.Log("左上");
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180 + Mathf.Abs(Mathf.PI / 2 - Mathf.Abs(Mathf.Atan2(rb.velocity.y , rb.velocity.x))) * Mathf.Rad2Deg));
             }
         }
         if(rb.velocity.y < 0) {
             if (rb.velocity.x > 0) {
-                Debug.Log("右下");
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0 + Mathf.Abs(Mathf.PI / 2 - Mathf.Abs(Mathf.Atan2(rb.velocity.y, rb.velocity.x))) * Mathf.Rad2Deg));
             }
             if (rb.velocity.x < 0) {
-                Debug.Log("左下");
-
                 Debug.Log(Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg);
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90 + Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg));
             }

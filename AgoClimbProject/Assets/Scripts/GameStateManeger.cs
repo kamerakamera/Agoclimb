@@ -82,6 +82,9 @@ public class GameStateManeger : MonoBehaviour {
         if(GameState == State.moving) {
             ago.AddFallVelocity();
             ago.ChengeRotation();
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                //スピンさせたい
+            }
         }
     }
 
@@ -93,7 +96,7 @@ public class GameStateManeger : MonoBehaviour {
         stageLimitObject.RetrySetPosition();
         scoreManeger.ResetScore();
         ago.RetryAgo();
-        stageCreateManeger.RetryCreateStage();
+        stageCreateManeger.RetryDeleteObj();
         deadPanelManeger.DisplayDeadPanel(false);
     }
 
