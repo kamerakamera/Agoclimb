@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManeger : MonoBehaviour {
     public int Score { get; set; }
@@ -8,6 +9,8 @@ public class ScoreManeger : MonoBehaviour {
     private float playerPositionY, startPlayerPositionY;
     [SerializeField]
     GameObject player;
+    [SerializeField]
+    Text heightScoreText, marshmallowScoreText;
 
     // Use this for initialization
     void Start () {
@@ -19,6 +22,7 @@ public class ScoreManeger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckHeightScore();
+        ScoreDisplay();
 	}
 
     void CheckHeightScore() {
@@ -27,8 +31,13 @@ public class ScoreManeger : MonoBehaviour {
         }
     }
 
+    void ScoreDisplay() {
+        marshmallowScoreText.text = Score.ToString() + "\nクソマロ";
+        heightScoreText.text = ((int)HeightScore).ToString() + "m\n登った高さ";
+    }
+
     public void AddScore() {
-        Score += 10;
+        Score += 1;
     }
 
     public void ResetScore() {

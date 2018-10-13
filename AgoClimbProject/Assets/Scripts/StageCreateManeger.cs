@@ -12,18 +12,18 @@ public class StageCreateManeger : MonoBehaviour {
     GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab;
     [SerializeField]
     ScoreManeger scoreManeger;
-    float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f;
+    float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f,gameLevel;
     List<Vector3> alreadyCreatePos = new List<Vector3>();
     int marshmallowAmount,emptySpaceAmount;
     bool setPos;
     Vector3[] createMarshmallowPos,createEmptySpacePos;
     // Use this for initialization
     void Start () {
-        //nextWallPosY = wallsize * wallObject.Length;
-        marshmallowAmount = 4;
+        gameLevel = 0;
+        marshmallowAmount = 3;
         emptySpaceAmount = 1;
         createMarshmallowPos = new Vector3[marshmallowAmount];
-        createEmptySpacePos = new Vector3[emptySpaceAmount];
+        createEmptySpacePos = new Vector3[emptySpaceAmount + 10];
         alreadyCreatePos.Add(ago.transform.position);
     }
 	
@@ -34,16 +34,9 @@ public class StageCreateManeger : MonoBehaviour {
             CreateMarshmallow();
             CreateEmptySpace();
             DeleteAlreadyCreatePosList();
+            GameDifficulty();
         }
 	}
-
-    /*void StartCreate() {
-        for(int i = 0;i < 3; i++) {
-            wallObject[i] = Instantiate(wallPrefab, new Vector3(0, nextWallPosY, 0), Quaternion.identity);
-            CreateMarshmallow();
-            CreateEmptySpace();
-        }
-    }*/
 
     void CreateWall() {
         DeleteWall();
@@ -129,6 +122,13 @@ public class StageCreateManeger : MonoBehaviour {
         alreadyCreatePos = new List<Vector3>();
     }
 
+    void GameDifficulty() {
+        if (scoreManeger.HeightScore >= 100) {
+            gameLevel = scoreManeger.HeightScore / 100;
+        }
+        emptySpaceAmount = (int)gameLevel + 1;
+    }
+
     public void RetryDeleteObj() {
         nextWallPosY = 0;
         marshmallowObj = GameObject.FindGameObjectsWithTag("Marshmallow");
@@ -143,6 +143,10 @@ public class StageCreateManeger : MonoBehaviour {
             Destroy(obj);
         }
         alreadyCreatePos.Add(ago.transform.position);
+    }
+
+    public void RetryEmptySpaceAmount() {
+        emptySpaceAmount = 1;
     }
 
 }

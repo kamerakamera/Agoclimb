@@ -32,5 +32,17 @@ public class StageLimitObject : MonoBehaviour {
     public void RetrySetPosition() {
         transform.position = startposition;
     }
+    
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.tag == "Marshmallow") {
+            Destroy(other.transform.root.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if(other.collider.tag == "EmptySpace") {
+            Destroy(other.collider.transform.root.gameObject);
+        }
+    }
 
 }

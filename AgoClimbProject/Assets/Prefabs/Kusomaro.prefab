@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50068091652504686}
   m_Layer: 0
   m_Name: KusomaroBody
-  m_TagString: Untagged
+  m_TagString: Marshmallow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

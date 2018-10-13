@@ -97,6 +97,7 @@ public class GameStateManeger : MonoBehaviour {
         scoreManeger.ResetScore();
         ago.RetryAgo();
         stageCreateManeger.RetryDeleteObj();
+        stageCreateManeger.RetryEmptySpaceAmount();
         deadPanelManeger.DisplayDeadPanel(false);
     }
 

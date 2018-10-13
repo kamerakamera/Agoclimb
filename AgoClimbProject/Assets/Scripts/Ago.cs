@@ -47,7 +47,6 @@ public class Ago : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0 + Mathf.Abs(Mathf.PI / 2 - Mathf.Abs(Mathf.Atan2(rb.velocity.y, rb.velocity.x))) * Mathf.Rad2Deg));
             }
             if (rb.velocity.x < 0) {
-                Debug.Log(Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg);
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90 + Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg));
             }
         }
