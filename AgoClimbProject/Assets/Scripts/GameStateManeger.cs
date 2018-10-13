@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum State {
     wait,stuck, fire,spintime, gameover, retrymemu,moving
@@ -93,11 +94,13 @@ public class GameStateManeger : MonoBehaviour {
     }
 
     void Retry() {
-        stageLimitObject.RetrySetPosition();
         scoreManeger.ResetScore();
         ago.RetryAgo();
-        stageCreateManeger.RetryDeleteObj();
-        stageCreateManeger.RetryEmptySpaceAmount();
+        if(SceneManager.GetActiveScene().name == "Infinitemode") {
+            stageLimitObject.RetrySetPosition();
+            stageCreateManeger.RetryDeleteObj();
+            stageCreateManeger.RetryEmptySpaceAmount();
+        }
         deadPanelManeger.DisplayDeadPanel(false);
     }
 
