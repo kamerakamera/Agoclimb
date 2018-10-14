@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class PassingThroughObject : MonoBehaviour {
 
-    bool isMove;
+    bool isTrigger,isMove;
     [SerializeField]
-    float limitTime;
+    float limitTime, movePower;
+    [SerializeField]
+    Rigidbody2D rb;
+    [SerializeField]
+    GameObject ago;
     float timeCount;
 	// Use this for initialization
 	void Start () {
         timeCount = 0;
-        isMove = true;
+        SetIsMove(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (isMove) {
-            MoveToRight();
+            Move();
             CountTime();
         }
 	}
 
-    void MoveToRight() {
-        transform.position += new Vector3(0.1f, 0, 0);
+    void Move() {
+        //transform.position += new Vector3(0.1f, 0, 0);
+        rb.velocity = (ago.transform.position - transform.position).normalized * movePower;
     }
 
     void CountTime() {
@@ -32,6 +37,10 @@ public class PassingThroughObject : MonoBehaviour {
             DeleteObject();
             timeCount = 0;
         }
+    }
+
+    public void SetIsMove(bool _bool) {
+        isMove = _bool;
     }
 
     void DeleteObject() {
