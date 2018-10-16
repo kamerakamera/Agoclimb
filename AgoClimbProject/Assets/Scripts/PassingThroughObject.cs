@@ -16,6 +16,7 @@ public class PassingThroughObject : MonoBehaviour {
 	void Start () {
         timeCount = 0;
         SetIsMove(false);
+        ago = GameObject.Find("Ago");
 	}
 	
 	// Update is called once per frame
@@ -27,7 +28,6 @@ public class PassingThroughObject : MonoBehaviour {
 	}
 
     void Move() {
-        //transform.position += new Vector3(0.1f, 0, 0);
         rb.velocity = (ago.transform.position - transform.position).normalized * movePower;
     }
 

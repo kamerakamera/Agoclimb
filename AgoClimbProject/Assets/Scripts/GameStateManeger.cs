@@ -18,7 +18,7 @@ public class GameStateManeger : MonoBehaviour {
     [SerializeField]
     DeadPanelManeger deadPanelManeger;
     [SerializeField]
-    StageCreateManeger stageCreateManeger;
+    InfiniteStageCreateManeger stageCreateManeger;
     [SerializeField]
     StageLimitObject stageLimitObject;
     [SerializeField]
@@ -94,14 +94,17 @@ public class GameStateManeger : MonoBehaviour {
     }
 
     void Retry() {
-        scoreManeger.ResetScore();
-        ago.RetryAgo();
-        if(SceneManager.GetActiveScene().name == "Infinitemode") {
+        if (SceneManager.GetActiveScene().name == "Infinitemode") {
+            scoreManeger.ResetScore();
+            ago.RetryAgo();
             stageLimitObject.RetrySetPosition();
             stageCreateManeger.RetryDeleteObj();
             stageCreateManeger.RetryEmptySpaceAmount();
+            deadPanelManeger.DisplayDeadPanel(false);
+        } else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        deadPanelManeger.DisplayDeadPanel(false);
+        
     }
 
 }

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManeger : MonoBehaviour {
     public int Score { get; set; }
     public float HeightScore { get; set; }
+    public int BurningScore { get; set; }
     private float playerPositionY, startPlayerPositionY;
     [SerializeField]
     GameObject player;
     [SerializeField]
-    Text heightScoreText, marshmallowScoreText;
+    Text heightScoreText,burningTreeScoreText, marshmallowScoreText;
+    [SerializeField]
+    private int targetTreeNum;
 
     // Use this for initialization
     void Start () {
@@ -21,7 +25,13 @@ public class ScoreManeger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        CheckHeightScore();
+        if (SceneManager.GetActiveScene().name == "Infinitemode") {
+            CheckHeightScore();
+        } else {
+            if(BurningScore >= targetTreeNum) {
+                StageClear();
+            }
+        }
         ScoreDisplay();
 	}
 
@@ -33,11 +43,24 @@ public class ScoreManeger : MonoBehaviour {
 
     void ScoreDisplay() {
         marshmallowScoreText.text = Score.ToString() + "\nクソマロ";
-        heightScoreText.text = ((int)HeightScore).ToString() + "m\n登った高さ";
+        if (SceneManager.GetActiveScene().name == "Infinitemode") {
+            heightScoreText.text = ((int)HeightScore).ToString() + "m\n登った高さ";
+        } else {
+            burningTreeScoreText.text = BurningScore.ToString() + "本\n燃やした木の数";
+        }
+        
     }
 
     public void AddScore() {
         Score += 1;
+    }
+
+    void StageClear() {
+        SceneManager.LoadScene("StageClear");
+    }
+
+    public void AddScoreBurningTree() {
+        BurningScore += 1;
     }
 
     public void ResetScore() {

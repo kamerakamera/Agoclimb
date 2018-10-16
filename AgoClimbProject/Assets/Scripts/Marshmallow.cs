@@ -24,5 +24,10 @@ public class Marshmallow : MonoBehaviour {
             Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(marshmallow);
         } 
+        if(other.tag == "Flame") {
+            scoreManeger.AddScore();
+            Instantiate(particle, transform.position, Quaternion.identity);
+            Destroy(marshmallow);
+        }
     }
 }

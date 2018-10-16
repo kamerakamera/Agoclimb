@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - EmptySpace
   - Marshmallow
+  - Flame
+  - PassingEmptySpace
+  - Tree
   layers:
   - Default
   - TransparentFX

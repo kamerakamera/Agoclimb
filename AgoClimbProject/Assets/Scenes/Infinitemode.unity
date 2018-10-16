@@ -173,7 +173,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &152124380
 GameObject:
@@ -341,6 +341,10 @@ MonoBehaviour:
   rb: {fileID: 280954189}
   arrowManeger: {fileID: 1503628878}
   gameStateManeger: {fileID: 1977855681}
+  flamePrefab: {fileID: 1967524465219422, guid: 4d4e625e5cfa9ab4fa2c31d5b2e084f5,
+    type: 2}
+  flameSpeed: 20
+  flameShotIntervalTime: 0.1
 --- !u!4 &280954188
 Transform:
   m_ObjectHideFlags: 0
@@ -355,7 +359,7 @@ Transform:
   - {fileID: 375722935}
   - {fileID: 504679865}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &280954189
 Rigidbody2D:
@@ -591,7 +595,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 280954185}
   heightScoreText: {fileID: 1450089540}
+  burningTreeScoreText: {fileID: 0}
   marshmallowScoreText: {fileID: 1732353191}
+  targetTreeNum: 0
 --- !u!4 &487172895
 Transform:
   m_ObjectHideFlags: 0
@@ -603,7 +609,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &504679864
 GameObject:
@@ -807,7 +813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4428768304675632, guid: e93975a8995b938428ca0b51cd6b2c7e, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114029016858515052, guid: e93975a8995b938428ca0b51cd6b2c7e,
         type: 2}
@@ -1018,7 +1024,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1384910884
 MonoBehaviour:
@@ -1040,6 +1046,10 @@ MonoBehaviour:
   marshmallowPrefab: {fileID: 1596296290425242, guid: 79c0f625a43a9654eafaad787dc9b221,
     type: 2}
   emptySpacePrefab: {fileID: 1414875398110064, guid: 18ebbe752bdb6db4e8cda7df545fa2c2,
+    type: 2}
+  treeObjPrefab: {fileID: 1467716229677856, guid: 936edfdd15f27c3489c07a11be981b57,
+    type: 2}
+  passingEmptySpaceObjPrefab: {fileID: 1798236912318562, guid: b8e122d06ebfb6841ad495ec2127d778,
     type: 2}
   scoreManeger: {fileID: 487172894}
 --- !u!1 &1450089538
@@ -1156,7 +1166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1503628877
 GameObject:
@@ -1245,7 +1255,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625662517
 GameObject:
@@ -1336,7 +1346,7 @@ RectTransform:
   - {fileID: 1450089539}
   - {fileID: 1732353190}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1613,77 +1623,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2038417875
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -5.4658446
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.5428782
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122632205634854, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1510852831889622, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_Name
-      value: Kokuu (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114997978441633980, guid: c0df11bc90b175644af9fef352f1b392,
-        type: 2}
-      propertyPath: gameStateManeger
-      value: 
-      objectReference: {fileID: 1977855681}
-    - target: {fileID: 1510852831889622, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c0df11bc90b175644af9fef352f1b392, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &2038417876 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1510852831889622, guid: c0df11bc90b175644af9fef352f1b392,
-    type: 2}
-  m_PrefabInternal: {fileID: 2038417875}
---- !u!114 &2038417877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2038417876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3ef99e273697347b24a1f35d9292bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  limitTime: 3

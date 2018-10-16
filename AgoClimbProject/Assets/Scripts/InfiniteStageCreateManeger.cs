@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageCreateManeger : MonoBehaviour {
+public class InfiniteStageCreateManeger : MonoBehaviour {
     [SerializeField]
     GameObject ago;
     [SerializeField]
     GameObject[] wallObject = new GameObject[3];
-    GameObject[] marshmallowObj, emptySpaceObj;
+    GameObject[] marshmallowObj, emptySpaceObj,treeObj,passingEmptySpaceObj;
     [SerializeField]
-    GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab;
+    GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab, treeObjPrefab, passingEmptySpaceObjPrefab;
     [SerializeField]
     ScoreManeger scoreManeger;
     float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f,gameLevel;
@@ -133,6 +133,8 @@ public class StageCreateManeger : MonoBehaviour {
         nextWallPosY = 0;
         marshmallowObj = GameObject.FindGameObjectsWithTag("Marshmallow");
         emptySpaceObj = GameObject.FindGameObjectsWithTag("EmptySpace");
+        treeObj = GameObject.FindGameObjectsWithTag("Tree");
+        passingEmptySpaceObj = GameObject.FindGameObjectsWithTag("PassingEmptySpace");
         for (int i = 0;i < 3; i++) {
             Destroy(wallObject[i]);
         }
@@ -140,6 +142,12 @@ public class StageCreateManeger : MonoBehaviour {
             Destroy(obj);
         }
         foreach (GameObject obj in emptySpaceObj) {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in treeObj) {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in passingEmptySpaceObj) {
             Destroy(obj);
         }
         alreadyCreatePos.Add(ago.transform.position);

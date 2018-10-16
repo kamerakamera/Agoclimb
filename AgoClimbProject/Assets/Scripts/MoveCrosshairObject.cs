@@ -12,6 +12,7 @@ public class MoveCrosshairObject : MonoBehaviour {
     Vector3 startPos;
     [SerializeField]
     float moveSpeed;
+    float horizontalMovement, verticalMovement;
 
     // Use this for initialization
     void Start () {
@@ -22,30 +23,35 @@ public class MoveCrosshairObject : MonoBehaviour {
 	void Update () {
         if (isHorizontal) {
             HorizontalExchengeCheck();
-            HorizontalMove();
+            HorizontalMoveInput();
         }
         if (isVertical) {
             VerticalExchengeCheck();
-            VerticalMove();
+            VerticalMoveInput();
         }
+        CrosshairMove();
 	}
 
-    void HorizontalMove() {
+    void HorizontalMoveInput() {
         if (isRight) {
-            rb.velocity = new Vector3(1,0,0) * moveSpeed;
+            horizontalMovement = moveSpeed;
         }
         if (isLeft) {
-            rb.velocity = new Vector3(-1, 0, 0) * moveSpeed;
+            horizontalMovement = -moveSpeed;
         }
     }
 
-    void VerticalMove() {
+    void VerticalMoveInput() {
         if (isUp) {
-            rb.velocity = new Vector3(0, 1, 0) * moveSpeed;
+            verticalMovement = moveSpeed;
         }
         if(isDown){
-            rb.velocity = new Vector3(0, -1, 0) * moveSpeed;
+            verticalMovement = -moveSpeed;
         }
+    }
+
+    void CrosshairMove() {
+        rb.velocity = new Vector3(horizontalMovement,verticalMovement,0);
     }
 
     void HorizontalExchengeCheck() {

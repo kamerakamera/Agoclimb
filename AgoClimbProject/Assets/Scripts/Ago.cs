@@ -9,23 +9,63 @@ public class Ago : MonoBehaviour {
     private ArrowManeger arrowManeger;
     [SerializeField]
     GameStateManeger gameStateManeger;
+    [SerializeField]
+    GameObject flamePrefab;
+    GameObject isFlameObj;
+    bool isFlame;
+    Vector3 flameVelocityRotation;
+    [SerializeField]
+    float flameSpeed;
     private float fireRotationZ;
     Vector3 startPos;
     public Vector3 FallVelocity { get; set; }
+    [SerializeField]
+    float flameShotIntervalTime;
+    float flameCountTime;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         startPos = transform.position;
+        isFlame = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-	}
+        if (isFlame) {
+            FlameShotCount();
+        }
+
+        if(gameStateManeger.GameState == State.stuck) {
+            FlameShotInput();
+        }
+    }
 
     public void Fire() {
         transform.rotation = Quaternion.Euler(arrowManeger.GetFireRotation().eulerAngles + new Vector3(0, 0, 180));
         rb.velocity = transform.up * -1 * arrowManeger.GetFirePower();
+    }
+    
+    void FlameShotInput() {
+        if (Input.GetMouseButtonDown(1) && !isFlame) {
+            isFlameObj = Instantiate(flamePrefab, transform.position, Quaternion.identity);
+            SetFlameVelocityRotation();
+            isFlameObj.GetComponent<Rigidbody2D>().velocity = flameVelocityRotation * flameSpeed;
+            isFlame = true;
+        }
+    }
+
+    void SetFlameVelocityRotation() {
+        flameVelocityRotation = new Vector3(Mathf.Cos((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), Mathf.Sin((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), 0);
+        Debug.Log(new Vector3(Mathf.Cos((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), Mathf.Sin((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), 0));
+    }
+
+    void FlameShotCount() {
+        flameCountTime += Time.deltaTime;
+        if (flameCountTime >= flameShotIntervalTime) {
+            flameCountTime = 0;
+            isFlame = false;
+            //Destroy(isFlameObj.gameObject);
+        }
     }
 
     public void AddFallVelocity() {

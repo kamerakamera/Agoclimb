@@ -19,7 +19,7 @@ public class AgoTip : MonoBehaviour {
 	}
 
     private void OnTriggerStay2D(Collider2D col) {
-        if (col.tag == "Wall" && gameStateManeger.GameState == State.moving) {
+        if ((col.tag == "Wall" || col.tag == "Tree") && gameStateManeger.GameState == State.moving) {
             ago.StuckChin(col.gameObject);
             gameStateManeger.StateChange(1);
             WallObject = col.gameObject;
