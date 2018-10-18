@@ -78,14 +78,14 @@ public class GameStateManeger : MonoBehaviour {
                 Retry();
                 StateChange(0);
             }
+            if (Input.GetKeyDown("w")) {
+                SceneManager.LoadScene("StartScene");
+            }
         }
 
         if(GameState == State.moving) {
             ago.AddFallVelocity();
             ago.ChengeRotation();
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                //スピンさせたい
-            }
         }
     }
 
@@ -98,8 +98,8 @@ public class GameStateManeger : MonoBehaviour {
             scoreManeger.ResetScore();
             ago.RetryAgo();
             stageLimitObject.RetrySetPosition();
+            stageCreateManeger.RetryGameLevel();
             stageCreateManeger.RetryDeleteObj();
-            stageCreateManeger.RetryEmptySpaceAmount();
             deadPanelManeger.DisplayDeadPanel(false);
         } else {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

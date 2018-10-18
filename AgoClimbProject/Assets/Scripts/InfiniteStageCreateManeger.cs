@@ -12,10 +12,12 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab, treeObjPrefab, passingEmptySpaceObjPrefab;
     [SerializeField]
     ScoreManeger scoreManeger;
-    float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f,gameLevel;
+    float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f;
+    int gameLevel;
     List<Vector3> alreadyCreatePos = new List<Vector3>();
     int marshmallowAmount,emptySpaceAmount;
     bool setPos;
+    GameObject moveEmptySpace;
     Vector3[] createMarshmallowPos,createEmptySpacePos;
     // Use this for initialization
     void Start () {
@@ -34,7 +36,7 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
             CreateMarshmallow();
             CreateEmptySpace();
             DeleteAlreadyCreatePosList();
-            GameDifficulty();
+            GameDifficultyUpdate();
         }
 	}
 
@@ -97,6 +99,15 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
         }
     }
 
+    void CreateMoveEmptySpace() {
+        SetEmptySpacePos();
+        for (int i = 0; i < emptySpaceAmount; i++) {
+            moveEmptySpace = Instantiate(emptySpacePrefab, createEmptySpacePos[i], Quaternion.identity);
+            //生成するときのステータス設定どうしようか
+            moveEmptySpace.GetComponent<MoveCrosshairObject>().SetMoveStatus("","","",0);
+        }
+    }
+
     void SetEmptySpacePos() {
         for (int i = 0; i < emptySpaceAmount; i++) {
             do {
@@ -118,15 +129,22 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
         }
     }
 
+    void CreateTree() {
+        //wallの子に生成しておけばよさそう
+    }
+
+    void CreatePassingEmptySpace() {
+        //wallの子に生成しておけばよさそう
+    }
+
     void DeleteAlreadyCreatePosList() {
         alreadyCreatePos = new List<Vector3>();
     }
 
-    void GameDifficulty() {
-        if (scoreManeger.HeightScore >= 100) {
-            gameLevel = scoreManeger.HeightScore / 100;
+    void GameDifficultyUpdate() {
+        if (scoreManeger.HeightScore >= 50) {
+            gameLevel = (int)(scoreManeger.HeightScore / 50);
         }
-        emptySpaceAmount = (int)gameLevel + 1;
     }
 
     public void RetryDeleteObj() {
@@ -153,8 +171,8 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
         alreadyCreatePos.Add(ago.transform.position);
     }
 
-    public void RetryEmptySpaceAmount() {
-        emptySpaceAmount = 1;
+    public void RetryGameLevel() {
+        gameLevel = 0;
     }
 
 }

@@ -78,4 +78,34 @@ public class MoveCrosshairObject : MonoBehaviour {
         }
     }
 
+    public void SetMoveStatus(string directionInput, string firstMoveDirectionInputHorizontal, string firstMoveDirectionInputVertical, float moveSpeedInput) {
+        if(directionInput == "Hor") {
+            isHorizontal = true;
+        } 
+        if(directionInput == "Ver") {
+            isVertical = true;
+        } else {
+            isHorizontal = true;
+            isVertical = true;
+        }
+
+        if (isHorizontal) {
+            if(firstMoveDirectionInputHorizontal == "up") {
+                isUp = true;
+            }
+            if(firstMoveDirectionInputHorizontal == "down") {
+                isDown = true;
+            }
+        }
+        if (isVertical) {
+            if(firstMoveDirectionInputVertical == "right") {
+                isRight = true;
+            }
+            if(firstMoveDirectionInputVertical == "left") {
+                isLeft = true; 
+            }
+        }
+        moveSpeed = moveSpeedInput;
+    }
+
 }

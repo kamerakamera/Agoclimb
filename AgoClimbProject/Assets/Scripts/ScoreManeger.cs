@@ -8,11 +8,12 @@ public class ScoreManeger : MonoBehaviour {
     public int Score { get; set; }
     public float HeightScore { get; set; }
     public int BurningScore { get; set; }
+    public float TimeScore { get; set; }
     private float playerPositionY, startPlayerPositionY;
     [SerializeField]
     GameObject player;
     [SerializeField]
-    Text heightScoreText,burningTreeScoreText, marshmallowScoreText;
+    Text heightScoreText,timeScoreText, marshmallowScoreText;
     [SerializeField]
     private int targetTreeNum;
 
@@ -21,6 +22,7 @@ public class ScoreManeger : MonoBehaviour {
         startPlayerPositionY = player.transform.position.y;
         Score = 0;
         HeightScore = 0;
+        TimeScore = 0;
 	}
 	
 	// Update is called once per frame
@@ -33,6 +35,7 @@ public class ScoreManeger : MonoBehaviour {
             }
         }
         ScoreDisplay();
+        AddTimeScore();
 	}
 
     void CheckHeightScore() {
@@ -46,13 +49,17 @@ public class ScoreManeger : MonoBehaviour {
         if (SceneManager.GetActiveScene().name == "Infinitemode") {
             heightScoreText.text = ((int)HeightScore).ToString() + "m\n登った高さ";
         } else {
-            burningTreeScoreText.text = BurningScore.ToString() + "本\n燃やした木の数";
+            timeScoreText.text = ((int)TimeScore).ToString() + "秒\n経過時間";
         }
         
     }
 
     public void AddScore() {
         Score += 1;
+    }
+
+    public void AddTimeScore() {
+        TimeScore += Time.deltaTime;
     }
 
     void StageClear() {

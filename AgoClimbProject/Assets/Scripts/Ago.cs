@@ -56,7 +56,6 @@ public class Ago : MonoBehaviour {
 
     void SetFlameVelocityRotation() {
         flameVelocityRotation = new Vector3(Mathf.Cos((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), Mathf.Sin((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), 0);
-        Debug.Log(new Vector3(Mathf.Cos((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), Mathf.Sin((arrowManeger.GetFireRotation().eulerAngles.z + 90) * Mathf.Deg2Rad), 0));
     }
 
     void FlameShotCount() {
@@ -96,8 +95,17 @@ public class Ago : MonoBehaviour {
         FallVelocity = Vector3.zero;
     }
 
+    public void SetZeroRotation() {
+        transform.rotation = Quaternion.identity;
+    }
+
     public void StuckChin(GameObject stuckObject) {
-        rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
+        if(stuckObject == null) {
+            gameStateManeger.StateChange(6);
+            SetZeroRotation();
+        } else {
+            rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
+        }
     }
 
     public void DeadSpin() {

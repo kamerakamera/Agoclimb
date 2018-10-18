@@ -30,7 +30,7 @@ public class TweetButton : MonoBehaviour {
         }
         
         if(Application.platform == RuntimePlatform.WebGLPlayer) {
-            //Application.ExternalEval(string.Format("widow.open('{0}','_blank')", tweetURL));
+            Application.ExternalEval(string.Format("widow.open('{0}','_blank')", tweetURL));
         } else {
             Application.OpenURL(tweetURL);
         }
