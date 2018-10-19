@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ScoreManeger : MonoBehaviour {
-    public int Score { get; set; }
-    public float HeightScore { get; set; }
-    public int BurningScore { get; set; }
-    public float TimeScore { get; set; }
+    public static int Score { get; set; }
+    public static float HeightScore { get; set; }
+    public static int BurningScore { get; set; }
+    public static float TimeScore { get; set; }
+    public static string ClearStageName { get; set; }
     private float playerPositionY, startPlayerPositionY;
     [SerializeField]
     GameObject player;
@@ -16,6 +17,8 @@ public class ScoreManeger : MonoBehaviour {
     Text heightScoreText,timeScoreText, marshmallowScoreText;
     [SerializeField]
     private int targetTreeNum;
+    [SerializeField]
+    GameStateManeger gameStateManeger;
 
     // Use this for initialization
     void Start () {
@@ -35,7 +38,10 @@ public class ScoreManeger : MonoBehaviour {
             }
         }
         ScoreDisplay();
-        AddTimeScore();
+        if(gameStateManeger.GameState != State.retrymemu) {
+            AddTimeScore();
+        }
+        
 	}
 
     void CheckHeightScore() {
@@ -63,6 +69,7 @@ public class ScoreManeger : MonoBehaviour {
     }
 
     void StageClear() {
+        ClearStageName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("StageClear");
     }
 
@@ -73,5 +80,8 @@ public class ScoreManeger : MonoBehaviour {
     public void ResetScore() {
         Score = 0;
         HeightScore = 0;
+        TimeScore = 0;
+        BurningScore = 0;
+        ClearStageName = null;
     }
 }

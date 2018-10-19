@@ -10,8 +10,6 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     GameObject[] marshmallowObj, emptySpaceObj,treeObj,passingEmptySpaceObj;
     [SerializeField]
     GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab, treeObjPrefab, passingEmptySpaceObjPrefab;
-    [SerializeField]
-    ScoreManeger scoreManeger;
     float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f;
     int gameLevel;
     List<Vector3> alreadyCreatePos = new List<Vector3>();
@@ -142,8 +140,8 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     }
 
     void GameDifficultyUpdate() {
-        if (scoreManeger.HeightScore >= 50) {
-            gameLevel = (int)(scoreManeger.HeightScore / 50);
+        if (ScoreManeger.HeightScore >= 50) {
+            gameLevel = (int)(ScoreManeger.HeightScore / 50);
         }
     }
 

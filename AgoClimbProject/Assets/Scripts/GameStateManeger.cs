@@ -25,7 +25,9 @@ public class GameStateManeger : MonoBehaviour {
     ScoreManeger scoreManeger;
 	// Use this for initialization
 	void Start () {
+        scoreManeger.ResetScore();
         GameState = (State)0;
+        ScoreManeger.ClearStageName = SceneManager.GetActiveScene().name;
 	}
 	
 	// Update is called once per frame
@@ -79,6 +81,7 @@ public class GameStateManeger : MonoBehaviour {
                 StateChange(0);
             }
             if (Input.GetKeyDown("w")) {
+                scoreManeger.ResetScore();
                 SceneManager.LoadScene("StartScene");
             }
         }
@@ -94,8 +97,8 @@ public class GameStateManeger : MonoBehaviour {
     }
 
     void Retry() {
+        scoreManeger.ResetScore();
         if (SceneManager.GetActiveScene().name == "Infinitemode") {
-            scoreManeger.ResetScore();
             ago.RetryAgo();
             stageLimitObject.RetrySetPosition();
             stageCreateManeger.RetryGameLevel();
