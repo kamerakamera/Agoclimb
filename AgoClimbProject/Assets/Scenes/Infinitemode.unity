@@ -598,6 +598,7 @@ MonoBehaviour:
   timeScoreText: {fileID: 0}
   marshmallowScoreText: {fileID: 1732353191}
   targetTreeNum: 0
+  gameStateManeger: {fileID: 1977855681}
 --- !u!4 &487172895
 Transform:
   m_ObjectHideFlags: 0
@@ -958,8 +959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043b31313960ae49a0b61e85d31fd40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweetButton: {fileID: 1327711348}
-  scoreManeger: {fileID: 487172894}
 --- !u!1 &1357512156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1051,6 @@ MonoBehaviour:
     type: 2}
   passingEmptySpaceObjPrefab: {fileID: 1798236912318562, guid: b8e122d06ebfb6841ad495ec2127d778,
     type: 2}
-  scoreManeger: {fileID: 487172894}
 --- !u!1 &1450089538
 GameObject:
   m_ObjectHideFlags: 0

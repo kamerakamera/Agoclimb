@@ -104,7 +104,11 @@ public class Ago : MonoBehaviour {
             gameStateManeger.StateChange(6);
             SetZeroRotation();
         } else {
-            rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
+            if(stuckObject.tag == "Tree") {
+                rb.velocity = stuckObject.transform.parent.gameObject.transform.GetComponent<Rigidbody2D>().velocity;
+            } else {
+                rb.velocity = stuckObject.GetComponent<Rigidbody2D>().velocity;
+            }
         }
     }
 

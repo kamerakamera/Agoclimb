@@ -7,7 +7,7 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     GameObject ago;
     [SerializeField]
     GameObject[] wallObject = new GameObject[3];
-    GameObject[] marshmallowObj, emptySpaceObj,treeObj,passingEmptySpaceObj;
+    GameObject[] marshmallowObj, emptySpaceObj,treeObj = new GameObject[3],passingEmptySpaceObj;
     [SerializeField]
     GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab, treeObjPrefab, passingEmptySpaceObjPrefab;
     float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f;
@@ -16,6 +16,7 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     int marshmallowAmount,emptySpaceAmount;
     bool setPos;
     GameObject moveEmptySpace;
+    GameObject[] moveWallchild = new GameObject[4];
     Vector3[] createMarshmallowPos,createEmptySpacePos;
     // Use this for initialization
     void Start () {
@@ -35,6 +36,9 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
             CreateEmptySpace();
             DeleteAlreadyCreatePosList();
             GameDifficultyUpdate();
+            if(gameLevel >= 2) {
+                CreateTree();
+            }
         }
 	}
 
@@ -128,7 +132,17 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     }
 
     void CreateTree() {
-        //wallの子に生成しておけばよさそう
+        if(Random.Range(0f,1f) < 0.5f) {
+            moveWallchild[0] = wallObject[2].transform.Find("agowallright").gameObject;
+            treeObj[0] = Instantiate(treeObjPrefab, moveWallchild[0].transform.position + new Vector3(-3, Random.Range(-5f, 5f), 0), Quaternion.Euler(new Vector3(0, 0, 90)));
+            treeObj[0].transform.parent = moveWallchild[0].transform;
+            treeObj[0].transform.localScale = new Vector3(1, 1.3f, 1);
+        } else {
+            moveWallchild[0] = wallObject[2].transform.Find("agowallleft").gameObject;
+            treeObj[0] = Instantiate(treeObjPrefab, moveWallchild[0].transform.position + new Vector3(3, Random.Range(-5f, 5f), 0), Quaternion.Euler(new Vector3(0, 0, -90)));
+            treeObj[0].transform.parent = moveWallchild[0].transform;
+            treeObj[0].transform.localScale = new Vector3(1, 1.3f, 1);
+        }
     }
 
     void CreatePassingEmptySpace() {

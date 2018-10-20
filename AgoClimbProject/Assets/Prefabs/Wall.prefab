@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 61386651050644664}
   - component: {fileID: 50438127996543490}
   m_Layer: 0
-  m_Name: agowall
+  m_Name: agowallleft
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 61185426114376980}
   - component: {fileID: 50043014594449458}
   m_Layer: 0
-  m_Name: agowall
+  m_Name: agowallright
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

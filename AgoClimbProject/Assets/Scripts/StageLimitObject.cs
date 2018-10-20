@@ -34,15 +34,8 @@ public class StageLimitObject : MonoBehaviour {
     }
     
     private void OnTriggerStay2D(Collider2D other) {
-        if(other.tag == "Marshmallow") {
+        if(other.tag == "Marshmallow" || other.tag == "EmptySpace") {
             Destroy(other.transform.root.gameObject);
         }
     }
-
-    private void OnCollisionStay2D(Collision2D other) {
-        if(other.collider.tag == "EmptySpace") {
-            Destroy(other.collider.transform.root.gameObject);
-        }
-    }
-
 }
