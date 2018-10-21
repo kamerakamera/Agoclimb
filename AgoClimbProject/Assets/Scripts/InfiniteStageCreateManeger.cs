@@ -7,9 +7,9 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     GameObject ago;
     [SerializeField]
     GameObject[] wallObject = new GameObject[3];
-    GameObject[] marshmallowObj, emptySpaceObj,treeObj = new GameObject[3],passingEmptySpaceObj;
+    GameObject[] marshmallowObj, emptySpaceObj,treeObj = new GameObject[100],passingEmptySpaceObj = new GameObject[3];
     [SerializeField]
-    GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab, treeObjPrefab, passingEmptySpaceObjPrefab;
+    GameObject wallPrefab,marshmallowPrefab,emptySpacePrefab,moveEmptySpacePrefab, treeObjPrefab, passingEmptySpaceObjPrefab;
     float nextWallPosY,playerStartPosY,wallsize = 10,wallInterval = 3.0f,createInterval = 3.2f;
     int gameLevel;
     List<Vector3> alreadyCreatePos = new List<Vector3>();
@@ -33,11 +33,19 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
 		if(ago.transform.position.y >= nextWallPosY - wallsize * 2) {
             CreateWall();
             CreateMarshmallow();
-            CreateEmptySpace();
+            if(gameLevel < 5) {
+                CreateEmptySpace();
+            }
+            if(gameLevel >= 5){
+                CreateMoveEmptySpace();
+            }
             DeleteAlreadyCreatePosList();
             GameDifficultyUpdate();
             if(gameLevel >= 2) {
                 CreateTree();
+            }
+            if(gameLevel >= 3) {
+                CreatePassingEmptySpace();
             }
         }
 	}
@@ -104,9 +112,9 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
     void CreateMoveEmptySpace() {
         SetEmptySpacePos();
         for (int i = 0; i < emptySpaceAmount; i++) {
-            moveEmptySpace = Instantiate(emptySpacePrefab, createEmptySpacePos[i], Quaternion.identity);
+            moveEmptySpace = Instantiate(moveEmptySpacePrefab, createEmptySpacePos[i], Quaternion.identity);
             //生成するときのステータス設定どうしようか
-            moveEmptySpace.GetComponent<MoveCrosshairObject>().SetMoveStatus("","","",0);
+            moveEmptySpace.GetComponent<MoveCrosshairObject>().SetMoveStatus("hor","right","right",5,5,3);
         }
     }
 
@@ -147,6 +155,17 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
 
     void CreatePassingEmptySpace() {
         //wallの子に生成しておけばよさそう
+        if (Random.Range(0f, 1f) < 0.5f) {
+            moveWallchild[0] = wallObject[2].transform.Find("agowallright").gameObject;
+            passingEmptySpaceObj[0] = Instantiate(passingEmptySpaceObjPrefab, moveWallchild[0].transform.position + new Vector3(-3, Random.Range(-5f, 5f), 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            passingEmptySpaceObj[0].transform.parent = moveWallchild[0].transform;
+            passingEmptySpaceObj[0].transform.localScale = new Vector3(1, 1f, 1);
+        } else {
+            moveWallchild[0] = wallObject[2].transform.Find("agowallleft").gameObject;
+            passingEmptySpaceObj[0] = Instantiate(passingEmptySpaceObjPrefab, moveWallchild[0].transform.position + new Vector3(3, Random.Range(-5f, 5f), 0), Quaternion.Euler(new Vector3(0, 0, 180)));
+            passingEmptySpaceObj[0].transform.parent = moveWallchild[0].transform;
+            passingEmptySpaceObj[0].transform.localScale = new Vector3(1, 1f, 1);
+        }
     }
 
     void DeleteAlreadyCreatePosList() {
@@ -181,10 +200,11 @@ public class InfiniteStageCreateManeger : MonoBehaviour {
             Destroy(obj);
         }
         alreadyCreatePos.Add(ago.transform.position);
+        treeObj = new GameObject[100];
+        passingEmptySpaceObj = new GameObject[3];
     }
 
     public void RetryGameLevel() {
         gameLevel = 0;
     }
-
 }

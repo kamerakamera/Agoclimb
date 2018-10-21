@@ -1047,6 +1047,8 @@ MonoBehaviour:
     type: 2}
   emptySpacePrefab: {fileID: 1414875398110064, guid: 18ebbe752bdb6db4e8cda7df545fa2c2,
     type: 2}
+  moveEmptySpacePrefab: {fileID: 1310650179580114, guid: cb11c5ba3db0fbe44bc6559e6deb8752,
+    type: 2}
   treeObjPrefab: {fileID: 1467716229677856, guid: 936edfdd15f27c3489c07a11be981b57,
     type: 2}
   passingEmptySpaceObjPrefab: {fileID: 1798236912318562, guid: b8e122d06ebfb6841ad495ec2127d778,

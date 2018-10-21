@@ -78,11 +78,11 @@ public class MoveCrosshairObject : MonoBehaviour {
         }
     }
 
-    public void SetMoveStatus(string directionInput, string firstMoveDirectionInputHorizontal, string firstMoveDirectionInputVertical, float moveSpeedInput) {
-        if(directionInput == "Hor") {
+    public void SetMoveStatus(string directionInput, string firstMoveDirectionInputHorizontal, string firstMoveDirectionInputVertical, float horizontalDistance, float verticalDistance,float moveSpeedInput) {
+        if(directionInput == "hor") {
             isHorizontal = true;
         } 
-        if(directionInput == "Ver") {
+        if(directionInput == "ver") {
             isVertical = true;
         } else {
             isHorizontal = true;
@@ -90,21 +90,23 @@ public class MoveCrosshairObject : MonoBehaviour {
         }
 
         if (isHorizontal) {
-            if(firstMoveDirectionInputHorizontal == "up") {
-                isUp = true;
+            if (firstMoveDirectionInputVertical == "right") {
+                isRight = true;
             }
-            if(firstMoveDirectionInputHorizontal == "down") {
-                isDown = true;
+            if (firstMoveDirectionInputVertical == "left") {
+                isLeft = true;
             }
         }
         if (isVertical) {
-            if(firstMoveDirectionInputVertical == "right") {
-                isRight = true;
+            if (firstMoveDirectionInputHorizontal == "up") {
+                isUp = true;
             }
-            if(firstMoveDirectionInputVertical == "left") {
-                isLeft = true; 
+            if (firstMoveDirectionInputHorizontal == "down") {
+                isDown = true;
             }
         }
+        horizontalMoveDistance = horizontalDistance;
+        verticalMoveDistance = verticalDistance;
         moveSpeed = moveSpeedInput;
     }
 

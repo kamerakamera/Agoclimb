@@ -149,16 +149,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae495efc0ef49f4395ef06ef9e72b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHorizontal: 1
+  isHorizontal: 0
   isVertical: 0
-  isRight: 1
+  isRight: 0
   isLeft: 0
   isUp: 0
   isDown: 0
   rb: {fileID: 50884886567513876}
-  horizontalMoveDistance: 5
+  horizontalMoveDistance: 0
   verticalMoveDistance: 0
-  moveSpeed: 2
+  moveSpeed: 0
 --- !u!114 &114895014750891534
 MonoBehaviour:
   m_ObjectHideFlags: 1
