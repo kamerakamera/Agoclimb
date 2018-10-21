@@ -2868,6 +2868,21 @@ Prefab:
       propertyPath: moveSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114754617220372554, guid: cb11c5ba3db0fbe44bc6559e6deb8752,
+        type: 2}
+      propertyPath: isHorizontal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114754617220372554, guid: cb11c5ba3db0fbe44bc6559e6deb8752,
+        type: 2}
+      propertyPath: isRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114754617220372554, guid: cb11c5ba3db0fbe44bc6559e6deb8752,
+        type: 2}
+      propertyPath: horizontalMoveDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb11c5ba3db0fbe44bc6559e6deb8752, type: 2}
   m_IsPrefabAsset: 0
@@ -3060,6 +3075,11 @@ Prefab:
       propertyPath: horizontalMoveDistance
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114754617220372554, guid: cb11c5ba3db0fbe44bc6559e6deb8752,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb11c5ba3db0fbe44bc6559e6deb8752, type: 2}
   m_IsPrefabAsset: 0
@@ -3251,6 +3271,11 @@ Prefab:
         type: 2}
       propertyPath: horizontalMoveDistance
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114754617220372554, guid: cb11c5ba3db0fbe44bc6559e6deb8752,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb11c5ba3db0fbe44bc6559e6deb8752, type: 2}

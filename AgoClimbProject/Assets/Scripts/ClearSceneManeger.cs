@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClearSceneManeger : MonoBehaviour {
     [SerializeField]
@@ -21,6 +22,9 @@ public class ClearSceneManeger : MonoBehaviour {
 	void Update () {
         BackGroundChengeRotation();
         ChengeColor();
+        if (Input.GetKeyDown("w")) {
+            LoadTitleScene();
+        }
 	}
 
     void BackGroundChengeRotation() {
@@ -34,6 +38,10 @@ public class ClearSceneManeger : MonoBehaviour {
         }
         nextColor = Color.HSVToRGB(colorValueH, 1, 1);
         backGroundSpriteColor.color = new Color(nextColor.r, nextColor.g, nextColor.b, 0.7f);
+    }
+
+    void LoadTitleScene() {
+        SceneManager.LoadScene("StartScene");
     }
 
 }
