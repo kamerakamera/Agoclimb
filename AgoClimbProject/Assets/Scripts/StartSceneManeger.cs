@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class StartSceneManeger : MonoBehaviour {
     [SerializeField]
     GameObject stageSelectPanel, descriptionPanel;
+    [SerializeField]
+    GameObject[] descriptionPage;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +31,15 @@ public class StartSceneManeger : MonoBehaviour {
 
     public void OnClickOperationDescriptionButton() {
         descriptionPanel.SetActive(true);
+        foreach(GameObject page in descriptionPage) {
+            page.SetActive(false);
+        }
+        descriptionPage[0].SetActive(true);
+    }
+
+    public void OnClickNextPage(int pageNum) {
+        descriptionPage[pageNum - 1].SetActive(false);
+        descriptionPage[pageNum].SetActive(true);
     }
 
     public void OnClickStageButton(int stageNum) {
@@ -38,6 +49,9 @@ public class StartSceneManeger : MonoBehaviour {
     public void OnClickBackButton() {
         stageSelectPanel.SetActive(false);
         descriptionPanel.SetActive(false);
+        foreach (GameObject page in descriptionPage) {
+            page.SetActive(false);
+        }
     }
 
 }
