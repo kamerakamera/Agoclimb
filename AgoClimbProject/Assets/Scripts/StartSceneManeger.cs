@@ -42,8 +42,8 @@ public class StartSceneManeger : MonoBehaviour {
         descriptionPage[pageNum].SetActive(true);
     }
 
-    public void OnClickStageButton(int stageNum) {
-        SceneManager.LoadScene("Stage" + stageNum.ToString());
+    public void OnClickStageButton(string sceneName) {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void OnClickBackButton() {
